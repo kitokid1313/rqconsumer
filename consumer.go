@@ -6,7 +6,7 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/streadway/amqp"
+	ampq "github.com/rabbitmq/amqp091-go"
 )
 
 type MessageConsumer interface {
@@ -14,12 +14,12 @@ type MessageConsumer interface {
 }
 
 type RabbitMQConsumer struct {
-	conn    *amqp.Connection
-	channel *amqp.Channel
-	queue   amqp.Queue
+	conn    *ampq.Connection
+	channel *ampq.Channel
+	queue   ampq.Queue
 }
 
-func NewRabbitMQConsumer(conn *amqp.Connection, channel *amqp.Channel, queue amqp.Queue) *RabbitMQConsumer {
+func NewRabbitMQConsumer(conn *ampq.Connection, channel *ampq.Channel, queue ampq.Queue) *RabbitMQConsumer {
 	return &RabbitMQConsumer{
 		conn:    conn,
 		channel: channel,
